@@ -6,8 +6,8 @@
 \documentclass[pdflatex,compress,8pt,
 	xcolor={dvipsnames,dvipsnames,svgnames,x11names,table},
 	hyperref={colorlinks = true,breaklinks = true, urlcolor = NavyBlue, breaklinks = true}]{beamer}
-\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[T2A,T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage{times}
 \usepackage{totcount}
@@ -21,7 +21,7 @@
 	\setbeamertemplate{caption}[numbered]
 \usepackage{graphicx}
 \usepackage{graphics}
-\usepackage{textcomp}  % numero symbol
+%\usepackage{textcomp}  % numero symbol
 \usepackage{gensymb} % degree symbol
 %%%%%%%% цветная таблица: начало
 \usepackage{booktabs} 
@@ -37,6 +37,7 @@
 \usepackage{longtable}
 %%%%%%%%  цветная таблица: конец
 \usepackage{wrapfig}
+\usepackage{csquotes}
 
 % ----------------------------------------------------------------------------
 % *** END PACKAGES <<<
@@ -152,6 +153,114 @@
 % ----------------------------------------------------------------------------
 % *** END SETUP <<<
 % ----------------------------------------------------------------------------
+
+% ----------------------------------------------------------------------------
+% *** START BIBLIOGRAPHY <<<
+% ----------------------------------------------------------------------------
+\usepackage[
+	backend=biber, 
+%	style=authortitle,
+%	style = numeric,
+%	style=ieee,
+%	style=nature,
+%	style=science,
+%	style=apa,
+%	style=mla,
+	style=phys, 
+	maxbibnames=99,
+%	citestyle=authoryear,
+	citestyle=numeric,
+	giveninits=true,
+	isbn=true,
+	url=true,
+	natbib=true,
+%	sorting=nydt,
+%	sorting=ydnt, 
+	sorting=ndymdt,
+%	sorting=ydnt, % Sort by year (descending), name, title.
+% 	sorting=nty (Sort by name, title, year.)
+% 	sorting=nyt,
+%	sorting=nyvt (Sort by name, year, volume, title).
+%	sorting=ydnt, 
+	bibencoding=utf8,
+	useprefix=false,
+	language=auto, 
+	autolang=other,
+	backref=true,
+	backrefstyle=none,
+	indexing=cite,
+]{biblatex}
+\DeclareSortingTemplate{ndymdt}{
+  \sort{
+    \field{presort}
+  }
+  \sort[final]{
+    \field{sortkey}
+  }
+  \sort{
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+    \field{sorttitle}
+    \field{title}
+  }
+  \sort[direction=descending]{
+    \field{sortyear}
+    \field{year}
+    \literal{9999}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{month}
+    \literal{99}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=2,padchar=0]{day}
+    \literal{99}
+  }
+  \sort{
+    \field{sorttitle}
+  }
+  \sort[direction=descending]{
+    \field[padside=left,padwidth=4,padchar=0]{volume}
+    \literal{9999}
+  }
+}
+
+\addbibresource{MidTremBib.bib}
+\renewcommand*{\bibfont}{\footnotesize}
+
+%%%%%%%%%%%% значок Open Access: начало %%%%%%%
+%\usepackage[tikzsymbol=plos]{biblatex-ext-oa}
+%\DeclareOpenAccessEprintUrl[always]{hal}{%
+ % http://hal.archives-ouvertes.fr/\thefield{eprint}}
+%\DeclareOpenAccessEprintAlias{HAL}{hal}
+%%%%%%%%%%% значок Open Access:: конец %%%%%%%
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+%\setbeamertemplate{bibliography item}{}
+
+% ----------------------------------------------------------------------------
+% *** END BIBLIOGRAPHY <<<
+% ----------------------------------------------------------------------------
+%%%%%%%%% hyper ref setup %%%%%%%%%
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{pdftitle={Deep-Sea Trenches of the Pacific Ocean: a Geospatial Analysis of the Submarine Geomorphology by GMT, R and Python}, 
+	pdfauthor={Lemenkova Polina}, 
+	pdfsubject={PhD Thesis}, 
+	pdfcreator={Lemenkova Polina}, 
+	pdfproducer={Lemenkova Polina}, 
+	colorlinks=true,linkcolor=blue, 
+	citecolor=NavyBlue, 
+	filecolor=magenta, 
+	urlcolor=blue,
+	pdfkeywords={Pacific Ocean, hadal trench, deep-sea trench, geomorphology, bathymetry, cartography, mapping, GMT, Generic Mapping Tools, Python, R, programming language, Matplotlib, Seaborn, submarine geomorphology, data analysis, statistics, spatial analysis, comparative analysis, statistical analysis, cluster analysis, factor analysis, algorithm, oceanography, GIS, marine geology, geomorphology}
+	}	
+
+%%%%%%%% цветные разделители
+\usepackage[object=vectorian]{pgfornament}
+%%%%%%%% цветные разделители
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------------------------------------------------------------------------
 % *** TITLE <<<
@@ -161,7 +270,7 @@ a Comparative Analysis of the Submarine Geomorphology \\
 by Data Modeling Using GMT, QGIS, Python and R}
 \subtitle{Mid-Term PhD Thesis Presentation: Current Research Progress}
 \author{Polina Lemenkova}
-\institute{Ocean University of China, College of Marine Geo-Sciences\\ Supervisor: Dr. Yonghong Wang}
+\institute{Ocean University of China, College of Marine Geo-Sciences\\ Supervisor: Prof. Dr. Yonghong Wang}
 \date{\today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \logo{\includegraphics[width=.25\textwidth]{OUC-logo.png}\vspace{-50pt}\hspace{10pt}}
@@ -180,6 +289,7 @@ by Data Modeling Using GMT, QGIS, Python and R}
 % ----------------------------------------------------------------------------
 \setbeamertemplate{footline}[text line]{%
 \parbox{\linewidth}{\vspace*{-8pt}Mid-Term PhD Thesis Presentation of Polina Lemenkova. College of Marine Geo-Sciences, Ocean University of China. Qingdao, 21/10/2019.} \hfill\insertpagenumber}
+%\setbeamertemplate{headline}{\insertpagenumber}
 
 % ----------------------------------------------------------------------------
 % *** END of Footnote >>>
@@ -239,8 +349,8 @@ Key points of this research:
 Key questions of this research: 
 \begin{itemize}
             \item to study properties of the hadal trenches in the Pacific Ocean, detect correlation of their location with geologic properties
-            \item to detect variations of geomorphology of the 20 trenches distributed along the borders of the Pacific Ocean (Ring of Fire) using ETOPO1, GEBCO, SRTM, ETOPO5 and EGM96 high quality datasets
-            \item to study bathymetric heterogeneity of the Pacific seafloor.
+            \item to detect variations of geomorphology of the 20 trenches distributed along the borders of the Pacific Ocean (Ring of Fire) using ETOPO1, GEBCO, SRTM, ETOPO5 and EGM96 high quality datasets (\cite{WesselSmith1996})
+            \item to study bathymetric heterogeneity of the Pacific seafloor and perform cartographic visualization by means of QGIS and GMT (\cite{Wessel1998})
             \item to detect, is there any difference in the trends of the geomorphic shape of trenches located in northern and southern hemisphere.
 \end{itemize}
 
@@ -338,10 +448,10 @@ Key questions of this research:
 \vspace{2em}
 \begin{itemize}
             \item Kuril-Kamchatka Trench (KKT): depths $>$ 5000 m
-            \item KKT ocated on the border of the Sea of Okhotsk, Far East, NW Pacific 
+            \item KKT is located on the border of the Sea of Okhotsk, Far East, NW Pacific 
             \item KKT continues south-eastwards from the coast of the Kamchatka Peninsula, in parallel to the Kuril Island chain until Hokkaido Island. 
-            \item The Sea of Okhotsk max depths 3374 m. 
-            \item The deepest strait to the NW Pacific Ocean is Bussol (2300m).
+            \item The Sea of Okhotsk max depths 3374 m \cite{MaiorovaAdrianov2018b}
+            \item The deepest strait to the NW Pacific Ocean is Bussol (2300m) \cite{Brandtetal2018}
 \end{itemize}	
 \end{column}
 \begin{column}{0.6\textwidth}
@@ -352,13 +462,25 @@ Key questions of this research:
 \end{frame}
 
 \begin{frame}\frametitle{Kuril-Kamchatka Trench}
-Geologically, the KKT presents a boundary of the large subduction zone of the Pacific tectonic plate under the Okhotsk tectonic plate. It causes irregularity in its bathymetric shapes and geomorphic structure.
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=6cm]{Fig-KKT2.jpg}
-	\caption{Geologic and tectonic settings of the Kuril-Kamchatka Trench area}\label{fig:KKT2}
-\end{figure}
 
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.55\textwidth}
+\vspace{2em}
+	\includegraphics[width=7.0cm]{Fig-KKT2.jpg}
+\end{column}
+\begin{column}{0.45\textwidth}
+\vspace{3em}
+	Key points on the geologic and tectonic settings of the KKT: 
+\begin{itemize}
+            \item presents a boundary of the large subduction zone of the Pacific tectonic plate under the Okhotsk tectonic plate \cite{Bird2003}
+            \item irregularity in its bathymetric shapes and geomorphic structure
+            \item together with Aleutian Trench, the KKT presents contiguous complex covering area of 254,740 km2 \cite{Harrisetal2014}.
+            \item The Okhotsk plate represents a region of active grabens lying southwards of a chain of small sedimentary basins in the Cherskii Mnts  \cite{Savostinetal1983}. 
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
 \end{frame}
 
 \begin{frame}\frametitle{Kuril-Kamchatka Trench}
@@ -431,9 +553,12 @@ Key points on the Aleutian Trench (AT) geology and tectonics:
 \begin{itemize}
             \item The AT is located in the North Pacific Ocean in the area of Pacific plate subduction.
             \item The tectonics of the Aleutian-Komandorsky chain is colliding with Kamchatka at the Kamchatsky Peninsula Cape. 
-            \item Structural evolution of the Kamchatka–Aleutian junction area in the Mesozoic and Tertiary was affected by the subduction in Kronotskiy subduction zone and collision of the Kronotskiy arc against North-East Eurasia margin. 
-            \item The Aleutian tectonics is deeply connected with KKT since the Aleutian transform fault separated the Kronotskiy terrane block from the Pacific plate. 
+            \item Structural evolution of the Kamchatka–Aleutian junction area in the Mesozoic and Tertiary was affected by the subduction in Kronotskiy subduction zone and collision of the Kronotskiy arc against North-East Eurasia margin \cite{Gaedicke} 
+            \item The Aleutian Islands arc is classified as an accreting margin with most of the arc having a well-developed frontal prism formed in the Plio-Pleistocene. 
+            \item The central Aleutian volcanic front migrated northwards 30-60 km since the formation of the arc massif completed in the late Eocene. Aleutian Trench has weak coupling between the surface tectonic plate and subducting slabs \cite{Yoshida2017}. 
+            \item The Aleutian tectonics is deeply connected with KKT since the Aleutian transform fault separated the Kronotskiy terrane block from the Pacific plate  \cite{Ekstrom}
             \item The seafloor of the AT is constantly experiencing deformations under the impact of the plate tectonic processes.
+            \item Various factors affect its formation, among which, tectonics plates movement, subduction of the underlying slab into the deep mantle, seismic activities in the study area, e.g. submarine earthquakes \cite{Shepard1963}. 
 \end{itemize}	
 
 \end{frame}
@@ -467,9 +592,9 @@ The topography in the study area ranges between -8000/2000 m. According to the s
 The Middle America Trench (MAT) is located on the Cocos Plate, between the Tehuantepec Ridge and stretching until Cocos Ridge, off Guatemala. \\
 Important geological historical context on the Cocos Plate (CP):
 \begin{itemize}
-            \item CP is young oceanic tectonic plate, beneath the Pacific Ocean off the coast of the Central America continent. 
-            \item CP was created as a results of the break of Farallon Plate into Nazca and CP.
-            \item CP is bounded by: North American, Caribbean, Pacific and Nazca plates. 
+            \item CP is young oceanic tectonic plate, beneath the Pacific Ocean off the coast of the Central America continent \cite{Morgan1968}
+            \item CP was created as a results of the break of Farallon Plate into Nazca and CP \cite{TurcotteSchubert2013}
+            \item CP is bounded by: North American, Caribbean, Pacific and Nazca plates \cite{Guzmanetal2006}
 \end{itemize}
 
 \begin{figure}[H]
@@ -483,8 +608,8 @@ Important geological historical context on the Cocos Plate (CP):
 \begin{frame}\frametitle{Middle America Trench}
 Key points on the Middle America Trench: 
 \begin{itemize}
-            \item The neotectonic MAT consists of two distinct parts with varying features of the oceanic plate and geology in either: northern and southern.
-            \item The division between the both parts goes by the Tehuantepec Ridge.
+            \item The neotectonic MAT consists of two distinct parts with varying features of the oceanic plate and geology in either: northern and southern
+            \item The division between the both parts goes by the Tehuantepec Ridge \cite{Aubouinetal1982}
             \item The northern part of MAT, off Mexico, a.k.a. Acapulco Trench: a minor hadal trench, a part of the East Pacific Rise, from Jalisco to Tehuantepec Ridge. 
             \item The southern part is Guatemala Trench. 
 \end{itemize}	
@@ -522,7 +647,7 @@ Key results on the Middle America Trench:
 \begin{itemize}
             \item the geometry of the trench demonstates its relatively steep and strait shape. Trench floor to be 3-5 km wide. 
             \item major depth samples are located in between the -3000 and -6200 m. 
-            \item frequency samples distribution shows changes by profiles. There is increase of frequencybetween -3000 and -4000 m caused by the geologic settings of the Cocos Plate. 
+            \item frequency samples distribution shows changes by profiles. There is increase of frequency between -3000 and -4000 m caused by the geologic settings of the Cocos Plate. 
             \item the deepest depth data range with 1,111 records takes 25\% of the samples. 
             \item mean values of the observation samples have a value of -2,200, and 7,5\% at -4,000 to -3,500 m
             \item median values have values of -3,200 to -3,300 m. 
@@ -557,20 +682,27 @@ Key points on the topography of the Peru-Chile Trench (PCT):
 \end{frame}
 
 \begin{frame}\frametitle{Peru-Chile Trench}
-
-\begin{figure}[H]
-	\centering
-		\includegraphics[width=5cm]{Fig-PCT6.jpg}
-	\caption{Cross-section profiles of the Peru-Chile Trench}\label{fig:PCT6}
-\end{figure}
-Key points on the geology of the PCT: 
+Key points on the geology of the Peru-Chile Trench (PCT): 
 \begin{itemize}
-            \item The Peru-Chile Trench is formed by the subduction of the Nazca and Antarctic plates beneath the South American Plate. 
-            \item Specific geologic, geotectonic, geomorphic and climatic characteristics generated between the Chilean-Peru Trench and the Chilean coasts
+            \item PCT is formed by the subduction of the Nazca and Antarctic plates beneath the South American Plate \cite{BelloGonzalezetal2018}. 
+            \item specific geologic, geotectonic, geomorphic and climatic characteristics generated between the Chilean-Peru Trench and the Chilean coasts
             \item PCT is exposed to a wide variety of hazards: earthquakes, local tsunamis, volcanism, continent-specific hazards (floods, landslides, mass movements)
             \item giant earthquakes: Valdivia (Mw=9.5), 1960, Maule (Mw=8.8), 2010.
+            \item according to the sedimentation conditions, the Peru-Chile Trench can be divided into two main provinces: the main sediment-free province extending 8\degree S-32\degree S and the sedimentary province extending 33\degree S-57\degree S \cite{Hayes}. 
+            \item downward deflection of the plate is found larger along the Chiloé segment comparing to Maule segment \cite{ContrerasReyesetal2013}
+            \item The margin off Isla de Chiloé is characterized by a largely sedimented segment of the Peru-ChileTrench. 
+            \item This is caused by the extension of turbidite deposits seaward reaching 250 km from the trench axis \cite{Contreras2007}. 
+            \item  The region close to the Taitao Triple Junction is devoid of sediments and has rapid narrowing of the forearc region \cite{Behrmann}. 
 \end{itemize}	
 
+\end{frame}
+
+\begin{frame}\frametitle{Peru-Chile Trench}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8cm]{Fig-PCT6.jpg}
+	\caption{Cross-section profiles of the Peru-Chile Trench}\label{fig:PCT6}
+\end{figure}
 \end{frame}
 
 \begin{frame}\frametitle{Peru-Chile Trench}
@@ -579,8 +711,8 @@ Key result points on the Peru-Chile Trench:
             \item the most frequent depths for the Peruvian segment range from -4,000 to -4,200 (827 samples) vs range of -4,500 to -4,700m for the Chilean segment (1410 samples). 
             \item the Peruvian segment of the Peru-Chile Trench is more deep and the geomorphology is more steep with abrupt slopes comparing to the Chilean segment. 
             \item the highest frequency of the data for both segments, the following findings are notable: the Peruvian segment has the majority of the data (23\%) reaching 1,410 (-4,500 to -4,700m are the most frequent values for the Peruvian segment).
-            \item  This peak shows steep pattern in data distribution, while other data in the neighbor diapason are significantly lower: 559 (-4,700 to -5,000 m) and 807 (-4,200 to -4,400 m) for the Peruvian segment.
-            \item  the Chilean segment has more even shape with unified data distribution for the depths -6,000 to -7,000 m. 
+            \item this peak shows steep pattern in data distribution, while other data in the neighbor diapason are significantly lower: 559 (-4,700 to -5,000 m) and 807 (-4,200 to -4,400 m) for the Peruvian segment.
+            \item the Chilean segment has more even shape with unified data distribution for the depths -6,000 to -7,000 m. 
 \end{itemize}	
 
 \end{frame}
@@ -600,14 +732,15 @@ Key result points on the Peru-Chile Trench:
 \begin{frame}\frametitle{Kermadec Trench}
 Key points on the Kermadec (KT) and Tonga (TT) trenches: 
 \begin{itemize}
-            \item KT is located 120 km off the New Zealand with axis continuing from ca. 26\degree S to 36\degree S. 
-            \item KT is the \nth{5} deepest trench in the world with a maximum depth of 10,177 m and a length of 1500 km.
-            \item KT and TT closeness to the Antarctic makes them ones of the coldest trenches in the world
-            \item KT runs parallel to the Kermadec Ridge with geomorphology of V- shape formed by tectonic subduction of the Pacific Plate under the Indo-Australian Plate
+            \item KT is located 120 km off the New Zealand with axis continuing from ca. 26\degree S to 36\degree S \cite{Duncan}
+            \item KT is the \nth{5} deepest trench in the world with a maximum depth of 10,177 m and a length of 1500 km \cite{Jamiesonetal2011}
+            \item KT and TT closeness to the Antarctic makes them ones of the coldest trenches in the world \cite{Belyaev}
+            \item KT runs parallel to the Kermadec Ridge with geomorphology of V- shape formed by tectonic subduction of the Pacific Plate under the Indo-Australian Plate \cite{LeducRowden2018}
             \item KT extends from approximately 26\degree to 36\degree S near the northeastern tip of New Zealand's North Island. 
             \item The specific tectonic setting is the subduction of the Pacific Plate at a rapid rate beneath the Indo-Australian Plate along the TT and KT
-            \item A convergence at max rate (ca. 249 mm/yr) along the Tonga-Kermadec arc system makes it one of the most seismically active subduction zones in the world 
-            \item TT is \nth{2} deepest trench in the world (maximum depths of 10,882 m). KT and TT belongs to the South Pacific Subtropical Gyre (SPSG) biogeochemical province and has the same primary productivity rate rate of 87 g C m-2 y-1. 
+            \item A convergence at max rate (ca. 249 mm/yr) along the Tonga-Kermadec arc system makes it one of the most seismically active subduction zones in the world \cite{Bevis}
+            \item TT is \nth{2} deepest trench in the world (maximum depths of 10,882 m) \cite{Blankenship}. 
+            \item KT and TT belongs to the South Pacific Subtropical Gyre (SPSG) biogeochemical province and has the same primary productivity rate rate of 87 g C m-2 y-1 \cite{Xuetal2018}
             \item Both trench axes have roughly 30\degree slight from the longitude line.
 \end{itemize}	
 
@@ -665,13 +798,14 @@ Key result points on the KT and TT:
 \begin{frame}\frametitle{New Britain Trench}
 Key points on the geology and tectonics of the New Britain Trench: 
 \begin{itemize}
-            \item The NBT (a.k.a. Bougainville Trench) is defined by the 6,000 m isoline.
-            \item  It is a narrow, 50-75 km wide trench extending NE from the E end of the Huon Gulf along the S coast of New Britain
+            \item The NBT (a.k.a. Bougainville Trench) is defined by the 6,000 m isoline \cite{Mammerickx}
+            \item  It is a narrow, 50-75 km wide trench extending NE from the E end of the Huon Gulf along the S coast of New Britain \cite{Mammerickx}
             \item Its name is derived from the New Britain Island from the New Britain arc
-            \item Its W extension are: north-dipping Ramu-Markham fault zone, West Bismarck arc
-            \item The northern part is characterized by the Bismark Sea back-arc basin where active rifting and seafloor spreading take place. 
-            \item The Bismark Sea back-arc basin comprises the South and North Bismarck microplates separated by the Bismarck Sea fault
+            \item Its W extension are: north-dipping Ramu-Markham fault zone, West Bismarck arc \cite{Abbott1994}
+            \item The northern part is characterized by the Bismark Sea back-arc basin where active rifting and seafloor spreading take place \cite{Lindley2006}
+            \item The Bismark Sea back-arc basin comprises the South and North Bismarck microplates separated by the Bismarck Sea fault \cite{Taylor1979}
             \item The islands of eastern Papua New Guinea and the Solomon Islands are island arc terranes, surrounding New Britain Trench, are formed adjacent to the boundary between the Australia and Pacific plates
+            \item Woodlark Basin subducts beneath the Solomon Islands arc region, forming a double-sided subduction zone \cite{Yoneshimaetal2005}.
 \end{itemize}	
 
 \end{frame}
@@ -739,6 +873,9 @@ Key result points on the NBT and SCT:
 
 \end{frame}
 
+% ----------------------------------------------------------------------------
+% *** START Philippine Trench <<<
+% ----------------------------------------------------------------------------
 \section{Ph}
 
 \begin{frame}\frametitle{Philippine Trench}
@@ -746,7 +883,7 @@ Key result points on the NBT and SCT:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=8cm]{Fig-Ph1.jpg}
-	\caption{Map of the region of Philippine Trench}\label{fig:Ph1}
+	\caption{Map of the region of Philippine Trench. Mapping: QGIS.}\label{fig:Ph1}
 \end{figure}
 
 \end{frame}
@@ -756,10 +893,65 @@ Key result points on the NBT and SCT:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig-Ph2.jpg}
-	\caption{Cross-section profiles of the Philippine Trench}\label{fig:Ph2}
+	\caption{Cross-section profiles of the Philippine Trench. Plotting: QGIS.}\label{fig:Ph2}
 \end{figure}
 
 \end{frame}
+
+\begin{frame}\frametitle{Philippine Trench}
+
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+	\includegraphics[width=6.0cm]{Fig-Ph01.jpg}
+\begin{itemize}
+            \item SPSS based statistical analysis is done by Graphs/Legacy Dialog menu
+            \item box plots show the extreme values in the bathymetric and topographic elevations across the Philippine Trench and archipelago \cite{Lemenkova201990}. 
+            \item 25 box plots include: min, max, \nth{1} and \nth{3} quartiles, median, error bars 
+\end{itemize} 
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+	\includegraphics[width=6.0cm]{Fig-Ph05.jpg}
+\begin{itemize}
+            \item Pairwise comparative analysis of sample distribution by two plates
+            \item Philippine Sea plate max samples (profiles 21, 22 and 23: 765, 681 and 652 samples), SW Philippines \cite{Lemenkova201990}.
+            \item Sunda Plate has lesser samples: max for profile 25 (622).
+\end{itemize}	
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}\frametitle{Philippine Trench}
+
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+	\includegraphics[width=6.0cm]{Fig-Ph04.jpg}
+	\begin{itemize}
+            \item variation of the data distribution for the geologic classes across 25 profiles
+            \item qualitative analysis of the geological classes by the multi-plot visualization for comparative analysis 
+            \item graph shows mean values of the observation samples by separate variables (profiles 1:25) \cite{Lemenkova201990}.
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+	\includegraphics[width=6.0cm]{Fig-Ph03.jpg}
+	\begin{itemize}
+            \item topographic analysis by statistical plotting of data using the high-low charts, SPSS, \cite{Lemenkova201990}          
+            \item shows analysis of the depth ranges: summaries of variables by 25 profiles
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+% ----------------------------------------------------------------------------
+% *** START Philippine Trench <<<
+% ----------------------------------------------------------------------------
 
 \section{Mn}
 
@@ -839,14 +1031,18 @@ Key result points on the NBT and SCT:
 
 \end{frame}
 
+% ----------------------------------------------------------------------------
+% *** START Mariana Trench <<<
+% ----------------------------------------------------------------------------
+
 \section{MT}
 
 \begin{frame}\frametitle{Mariana Trench}
-
+\vspace{1em}
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=8cm]{Fig-MT1.jpg}
-	\caption{Topographic map and location of the Mariana Trench}\label{fig:MT1}
+		\includegraphics[width=7.5cm]{Fig-MT1.jpg}
+	\caption{Topographic map and location of the Mariana Trench. Source: \cite{Lemenkova201992}}\label{fig:MT1}
 \end{figure}
 
 \end{frame}
@@ -855,8 +1051,23 @@ Key result points on the NBT and SCT:
 
 \begin{figure}[H]
 	\centering
-		\includegraphics[width=8cm]{Fig-MT2.jpg}
+		\includegraphics[width=8cm]{Fig-MT12.jpg}
+	\caption{Mariana Trench crossing four tectonic plates. Source: \cite{Lemenkova201988}}\label{fig:MT12}
+\end{figure}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=7.5cm]{Fig-MT2.jpg}
 	\caption{Digitizing cross-section profiles of the MT: QGIS}\label{fig:MT2}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8cm]{Fig-MT16.jpg}
+	\caption{Four steps of the QGIS based digitizing of the Mariana Trench profiles. Source: \cite{Lemenkova201991}}\label{fig:MT16}
 \end{figure}
 
 \end{frame}
@@ -870,6 +1081,147 @@ Key result points on the NBT and SCT:
 \end{figure}
 
 \end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5cm]{Fig-MT17.jpg}
+	\caption{Regression analysis of the QGIS digitized profiles by R library \{ggplot\}, \cite{Lemenkova201991}}\label{fig:MT17}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8cm]{Fig-MT5.jpg}
+	\caption{Normalized steepness slope calculation of the cross-section profiles: R library \{ggplot\}. Source: \cite{Lemenkova201871}}\label{fig:MT5}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=5.0cm]{Fig-MT4.jpg}
+	\caption{Boxplots of the cross-section profiles: R based statistical analysis. Source: \cite{Lemenkova201871}}\label{fig:MT4}
+\end{figure}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}[L]
+	\centering
+		\includegraphics[width=7.0cm]{Fig-MT6.jpg}
+	\caption{Violin plots of the profiles: R based statistical plotting. Source: \cite{Lemenkova201866}}\label{fig:MT6}
+\end{figure}
+
+\begin{itemize}
+            \item box plot and violit plot are show summary on the statistical analysis of depths distribution. 
+            \item box and violit plots graphically displays the frequencies, range and quartiles of the observation samples across profiles
+            \item plots show frequency or count on the depth y-axis (vertical) and measured variable (profiles) are shown on the horizontal x-axis.
+            \item method: by R libraries \{stat\} and \{violinmplot\}.
+\end{itemize}	
+
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=11cm]{Fig-MT7.jpg}
+	\caption{Scatterplot matrices of the factors affecting Mariana Trench formation: R based statistical analysis. Source: \cite{Lemenkova201901}}\label{fig:MT7}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8cm]{Fig-MT8.jpg}
+	\caption{R based dendrogram tree of the 25 profiles. Left: unsorted, right: sorted. Source: \cite{Lemenkova201868}}\label{fig:MT8}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=8cm]{Fig-MT9.jpg}
+	\caption{Hierarchical clustering with p-values using multiscale bootstrap probability, R. Source: \cite{Lemenkova201868}}\label{fig:MT9}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10cm]{Fig-MT10.jpg}
+	\caption{Ranking dot plots by data grouping: R based statistical analysis, libraries \{ggalt\} and \{ggplot\}. Source: \cite{Lemenkova201904}}\label{fig:MT10}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=11cm]{Fig-MT11.jpg}
+	\caption{Kernel Density Estimation (KDE) for the bathymetry, profiles 1:25. Python. Libraries Matplotlib, Seaborn, Pandas. Source: \cite{Lemenkova201905}}\label{fig:MT11}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+	\includegraphics[width=5.5cm]{Fig-MT13.jpg}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{itemize}
+            \item quantile regression is tested by Python library StatsModel for sediment thickness (m) versus geologic parameters \cite{Lemenkova201989}
+            \item quantile regression (approach of the linear regression) shows the estimated conditional median and other quantiles of the response geological variables: 
+            \item the upper two rows of the plot show (subplots A, B, C, D) data distribution across tectonic plates: A) Pacific Plate; B) Philippine Plate; C) Mariana Plate; D) Caroline Plate; E) Cumulative sediment thickness; F) Slope angle degree by profiles
+            \item the lower row of the plot (subplots E, F) shows data distribution for the cumulative sediment thickness and slope angle degree by profiles.
+\end{itemize}	
+\end{column}
+\end{columns}
+\end{minipage}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10cm]{Fig-MT14.jpg}
+	\caption{R based ridgeline plots by tectonic plates and bathymetric profiles, library \{ggplot\}. Source: \cite{Lemenkova201991}}\label{fig:MT14}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10cm]{Fig-MT15.jpg}
+	\caption{R based  analysis of the submarine geomorphology if the Mariana Trench (steepness angles): unsorted (left); sorted and grouped (right),   libraries \{tidyverse\} and \{ggsignif\}. Source: \cite{Lemenkova201991}}\label{fig:MT15}
+\end{figure}
+
+\end{frame}
+
+% ----------------------------------------------------------------------------
+% *** END Mariana Trench <<<
+% ----------------------------------------------------------------------------
 
 \section{IB}
 
@@ -915,7 +1267,7 @@ Key result points on the NBT and SCT:
 
 \end{frame}
 
-\section{Conc}
+\section{Con}
 
 \begin{frame}\frametitle{Research Innovation}
 There are both theoretical and practical innovations of the presented research. 
@@ -933,10 +1285,12 @@ There are both theoretical and practical innovations of the presented research.
 The significance and justification of this works consist in the following:
 
 \begin{itemize}
-         \item Although ML has been significantly increased over the past years, using scripting approaches and ML in cartography/mapping still remains lower comparing to the use of the traditional GIS (e.g. ArcGIS). 
+         \item Although ML has been significantly increased recently, using scripting and ML in cartography still remains lower comparing to the traditional GIS used in geosciences (e.g. \cite{Lemenkova2005b2}, \cite{RID09251802355041}, \cite{RID:0925180235504-2}, \cite{Lemenkova2014d}, \cite{Lemenkova2011c}, \cite{Lemenkova2005a}, \cite{Lemenkova2012j}, \cite{Lemenkova2007c}, \cite{Lemenkova2012d}). 
 	\item Accurate digitizing cross-section profiles using ArcGIS is slower comparing to the developed GMT-based automated digitizing. This is important for accurate geomorphological data analysis and crucial for better understanding of the seafloor landforms. 
-	\item GMT-based mapping provides fast results of the comparing to the traditional GIS. 
-	\item The traditional handmade (e.g. via QGIS) cartographic digitizing is a tedious routine usually prone to minor or major errors. On the contrary, using GMT based ML for the automatization of the cartographic techniques significantly improves the speed, precision and quality of the data modelling.	
+	\item GMT-based mapping provides accurate visualization of the seafloor \cite{Lemenkova2007f}
+	\item GMT-based mapping provides faster and preciser cartographic digitizing comparing to the traditional GIS. 
+	\item The traditional handmade (e.g. via QGIS) cartographic digitizing is a tedious monotonous slow-speed routine, might be prone to minor or major errors. Efforts in developing methodology in automatization in bathymetric mapping exists \cite{Lemenkova2008b}. 
+	\item The GMT based ML methodology (\cite{Wessel2019}, \cite{Wessel2018}, ) enabled to make further steps in automatization of the cartographic techniques. This significantly improved the speed, precision and quality of the data modelling.	
 \end{itemize}
 
 \end{frame}
@@ -944,7 +1298,7 @@ The significance and justification of this works consist in the following:
 \begin{frame}\frametitle{Conclusion}
 
 \begin{itemize}
-	\item Precise, correct and up-to-date information about the geomorphology hadal trenches in the Pacific Ocean is necessary for marine geology.
+	\item Precise, correct and up-to-date information about the geomorphology hadal trenches in the Pacific Ocean is necessary understanding marine geology, tectonics, seismicity, processes of sedimentation and geodynamic evolution of the seafloor \cite{Lemenkova2006e}, \cite{Lemenkova2006a}, \cite{Lemenkova2006b}, \cite{Lemenkova2006c}.
 	\item Submarine geomorphological and bathymetric mapping plays a critical role in analysis of the geological structures of the seafloor, marine benthic habitats, navigation, geological drilling, modelling marine environment and other aspects of geosciences.	
 	\item Current studies contributed to the methodological testing and technical application of the advanced algorithms for seafloor modelling and mapping and to the geomorphological modelling. 	
 	 \item Tested, presented and explained functionality of the several GMT modules enables to do automated digitizing of the orthogonal profiles crossing trenches in the perpendicular direction. Through this modelling, the shape of the landforms and steepness gradient of the trenches were visualized, compared and statistically analyzed. 
@@ -963,11 +1317,24 @@ The significance and justification of this works consist in the following:
 		\includegraphics[width=7cm]{Wordcloud.jpg}
 \end{figure}		
 \end{frame}
+
+\section{Thx}
+\begin{frame}\frametitle{Acknowledgements}
+
+I gratefully acknowledge the funding of this research from the China Scholarship Council (CSC),
+State Ocean Administration (SOA), Marine Scholarship of China, People's Republic of China 
+(P. R. C.), Beijing, Grant \#2016SOA002, 2016-2020.
+
+\end{frame}
  
 % ----------------------------------------------------------------------------
 % *** END: Final Slide >>>
 % ----------------------------------------------------------------------------
-
+%%%%%%%%%%% Bibliography %%%%%%%
+\section{Bib}
+	\markright{Bibliography}
+	\printbibliography[heading=none]
+	
 \end{document}
 
 %Changing the font size locally (from biggest to smallest):	
