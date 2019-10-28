@@ -1,4 +1,5 @@
 % Compile: LaTeX
+% Biber
 % ----------------------------------------------------------------------------
 % *** START PACKAGES <<<
 % ----------------------------------------------------------------------------
@@ -69,6 +70,8 @@
 \definecolor{color21}{HTML}{F5A9E1}
 \definecolor{color22}{HTML}{F5A9D0}
 \definecolor{color23}{HTML}{F5A9BC}
+\definecolor{color24}{HTML}{FDA9A9}
+\definecolor{color25}{HTML}{FDA0A0}
 
 \makeatletter
 
@@ -290,7 +293,7 @@ by Data Modeling Using GMT, QGIS, Python and R}
 % *** END of Titlepage >>>
 % ----------------------------------------------------------------------------
 \setbeamertemplate{footline}[text line]{%
-\parbox{\linewidth}{\vspace*{-8pt}Mid-Term PhD Thesis Presentation of Polina Lemenkova. College of Marine Geo-Sciences, Ocean University of China. Qingdao, 21/10/2019.} \hfill\insertpagenumber}
+\parbox{\linewidth}{\vspace*{-8pt}Mid-Term PhD Thesis Presentation of Polina Lemenkova. College of Marine Geo-Sciences, Ocean University of China. Qingdao, 04/11/2019.} \hfill\insertpagenumber}
 %\setbeamertemplate{headline}{\insertpagenumber}
 
 
@@ -572,6 +575,7 @@ Accuracy of digital bathymetric data is of crucial importance and well discussed
 \begin{column}{0.55\textwidth}
 \vspace{2em}
 	\includegraphics[width=7.0cm]{Fig-KKT3.jpg}
+Geoid model (EGR96) of the Kuril-Kamchatka Trench and Kamchatka Peninsula. Source: \cite{Lemenkova201995}
 \end{column}
 \begin{column}{0.45\textwidth}
 \vspace{3em}
@@ -592,21 +596,33 @@ Accuracy of digital bathymetric data is of crucial importance and well discussed
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=8cm]{Fig-KKT4.jpg}
-	\caption{Cross-section bathymetric profiles across the Kuril-Kamchatka Trench, GMT}
+	\caption{Cross-section bathymetric profiles across the Kuril-Kamchatka Trench. Source: \cite{Lemenkova201995}}
 \end{figure}
 \end{frame}
-
+            
 \begin{frame}\frametitle{Kuril-Kamchatka Trench}
-Key points on the KKT floor geomorphology: 
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+	\includegraphics[width=6.0cm]{Fig-KKT5.jpg}
+3D visualization of the Kuril-Kamchatka Trench and Kamchatka Peninsula geomorphic structure. Source: \cite{Lemenkova201995}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+	Key points on the Kuril-Kamchatka Trench geomorphology: 
 \begin{itemize}
-            \item the KKT floor geomorphology on the north is characterized by the gentle slope patterns and depths not exceeding 7,400 m
-            \item northern wall of the trench is the island-ward sloping surface of the Kuril islands.
-            \item profiles here are mainly flat and go parallel form at the shallower depths that extend to about 7,200 m in the seafloor. 
-            \item the most north profiles shows shallow depths and gentle slope shape following the enlargement of the trench valley. 
-            \item stacks of local small hills and bulges across the trench indicate sediment deposition along the trench slope in its northern part.
-\end{itemize}	
+            \item the KKT floor geomorphology on the N: gentle slope patterns and depths $< 7,400$ m
+            \item N wall of the trench is the island-ward sloping surface of the Kuril islands.
+            \item N profiles are mainly flat and go parallel form at the shallower depths that extend to ca. 7,200 m in the seafloor. 
+            \item most N profiles shows shallow depths and gentle slope shape following the enlargement of the trench valley. 
+            \item stacks of local small hills and bulges across the trench indicate sediment deposition along the trench slope in its N part.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}	
 
-\end{frame}
 \begin{frame}\frametitle{Kuril-Kamchatka Trench}
 \vspace{1em}
 \begin{figure}[H]
@@ -614,7 +630,6 @@ Key points on the KKT floor geomorphology:
 		\includegraphics[width=8cm]{Fig-KKT6.jpg}
 	\caption{Cross-section bathymetric profiles across the Kuril-Kamchatka Trench, Octave}\label{fig:KKT6}
 \end{figure}
-
 \end{frame}
 
 \begin{frame}\frametitle{Kuril-Kamchatka Trench}
@@ -838,7 +853,7 @@ Key result points on the Peru-Chile Trench:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=6cm]{Fig-TK1.jpg}
-	\caption{Topographic map and location of the Kermadec and Tonga trenches}\label{fig:TK1}
+	\caption{Topographic map and location of the Kermadec and Tonga trenches. \cite{Lemenkova201994}}\label{fig:TK1}
 \end{figure}
 
 \end{frame}
@@ -867,7 +882,7 @@ Key points on the Kermadec (KT) and Tonga (TT) trenches:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=8cm]{Fig-TK2.jpg}
-	\caption{Geologic settings of the Kermadec and Tonga trenches}\label{fig:TK2}
+	\caption{Geologic settings of the Kermadec and Tonga trenches. \cite{Lemenkova201994}}\label{fig:TK2}
 \end{figure}
 
 \end{frame}
@@ -877,7 +892,7 @@ Key points on the Kermadec (KT) and Tonga (TT) trenches:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=8cm]{Fig-TK3.jpg}
-	\caption{Cross-section profiles of the Tonga and Kermadec trenches}\label{fig:TK3}
+	\caption{Cross-section profiles of the Tonga and Kermadec trenches. \cite{Lemenkova201994}}\label{fig:TK3}
 \end{figure}
 
 \end{frame}
@@ -902,8 +917,110 @@ Key result points on the Tonga Trench:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=8.3cm]{Fig-TK4.jpg}
-	\caption{Modeled gradient slopes of the profiles of the TT and KT}\label{fig:TK4}
+	\caption{Modeled gradient slopes of the profiles of the TT and KT. \cite{Lemenkova201994}}\label{fig:TK4}
 \end{figure}
+\end{frame}
+
+\section{Vn}
+
+\begin{frame}\frametitle{Vanuatu Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=6.0cm]{Fig-VV1.jpg}\caption{Topographic map and location of the Vanuatu (New Hebrides) and Vityaz trenches}
+	\label{fig:VV1}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+Key points on the formation of the Vanuatu (a.k.a. New Hebrides) Trench: 
+\begin{itemize}
+            \item located in Fiji Basin, East Australia
+            \item area of the double convergent complex boundary 
+            \item PP subducts under the IAP westwards
+            \item IAP subducts beneath North Fiji back-arc basin northeastwards. 
+            \item Complex geophysical settings, high seismicity, geodynamic complexity and instability of the region 
+            \item Vanuatu arc stretches ca. 1200 km in SW PO, 10\degree S-23\degree S, 160\degree -180\degree E. 
+            \item Vanuatu trench-arc system divides the NH back-arc troughs and active North Fiji marginal basin.
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}\frametitle{Vanuatu Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-VV9.jpg}
+	\caption{Modeled cross-sections of the Vanuatu (New Hebrides) and Vityaz trenches}\label{fig:VV9}
+\end{figure}
+\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+Key points on the comparative analysis of the geomoprhic modelling of Vityaz and Vanuatu trenches: 
+\begin{itemize}
+            \item Vt has more flat wide bottom similar to a trough, with steeper gradient slope on the eastern flank. 
+            \item Vn has more V-form classic shape for the trench with gentle shapes on both western and eastern slopes.
+            \item Vt has shallower depths with maximal not exceeding -5,000 m while Vn is more deep with -6,000 m. 
+            \item The surrounding relief of the Vn \& Vt varies: Vt has the flat neighboring surface; 
+            \item Vn is surrounded by complex submarine relief of North Fiji Basin (its eastern flank) and its western flank
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\section{Vt}
+
+\begin{frame}\frametitle{Vityaz Trench}
+\begin{minipage}[0.4\textheight]{\textwidth}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=6cm]{Fig-VV2.jpg}
+	\caption{Geologic map and tectonic setting of the Vanuatu (New Hebrides) and Vityaz trenches}\label{fig:VV2}
+\end{figure}\end{column}
+\begin{column}{0.5\textwidth}
+\vspace{2em}
+	Key points on the Vityaz Trench: 
+\begin{itemize}
+            \item Vt has developed in a situation of complex tectonic settings.
+            \item Tectonic plates convergence is marked by 2 opposite subduction zones, defined by the Vt (W) and the Tonga Trench (E)
+            \item This results in an asymmetric opening of the North Fiji back-arc basin
+            \item Subducting IAP and a subduction of the d’Entrecasteaux ridge $=>$ New Hebrides trench-arc system
+            \item Southern NH Arc and NF Basin enlighten the geodynamic complexity and instability of the region
+            \item Active volcano Mt. Yasur: located in Tanna Island of the Vanuatu arc
+\end{itemize}
+\end{column}
+\end{columns}
+\end{minipage}
+\end{frame}
+
+\begin{frame}\frametitle{Vityaz Trench}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
+		\includegraphics[width=10.0cm]{Fig-VV10}
+		\caption{Statistical analysis on the digitized cross-sections of the Vanuatu (New Hebrides) and Vityaz trenches}\label{fig:VV10}
+\end{figure}
+%\vspace{2em}
+	Key points on the statistical analysis of the Vt and Vn trenches: 
+\begin{itemize}
+            \item Bathymetry of the Vt is shallower: depths <-6,100 m; Vn reaches -7,000 m
+            \item Vt: 'bell-shape' with 2 peaks: -3,500 to -3,700 m, and -4,800 to -5,000 m
+            \item Vt: the majority of values are within the range of -5,000 to -3,000 m.
+            \item Vn: data distribution is even with slight increase of depths at -2,200 to -800 m (total 1,353 samples)
+            \item Vt: 1605 samples (517, 653 and 435) at the first peak (-3,300 to -4,000) and 839 samples (238, 304, 297) at -4,500 to -5,200 m.
+\end{itemize}
 \end{frame}
 
 \section{NB}
@@ -1392,6 +1509,16 @@ Key points on plate tectonics of the Yap and Palau trenches:
 \vspace{1em}
 \begin{figure}[H]
 	\centering
+		\includegraphics[width=7.0cm]{Fig-MT20.jpg}
+	\caption{Mindmap of the project: methods, concepts, approaches and tools. \\Plotting: \LaTeX \space Source: \cite{Lemenkova201993}}\label{fig:MT20}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Mariana Trench}
+\vspace{1em}
+\begin{figure}[H]
+	\centering
 		\includegraphics[width=8cm]{Fig-MT12.jpg}
 	\caption{Mariana Trench crossing four tectonic plates. Source: \cite{Lemenkova201988}}\label{fig:MT12}
 \end{figure}
@@ -1432,7 +1559,7 @@ Key points on QGIS methodology of manual digitizing:
 \begin{figure}[H]
 	\centering
 		\includegraphics[width=5cm]{Fig-MT17.jpg}
-	\caption{Regression analysis of the QGIS digitized profiles by R library \{ggplot\}, \cite{RCoreTeam2014}, \cite{Lemenkova201991}}\label{fig:MT17}
+	\caption{Regression analysis of the QGIS digitized profiles by R library \{ggplot\}, \cite{RCoreTeam2014}. Source: \cite{Lemenkova201991}}\label{fig:MT17}
 \end{figure}
 
 \end{frame}
@@ -1528,6 +1655,7 @@ Key points on QGIS methodology of manual digitizing:
 \begin{column}{0.5\textwidth}
 \vspace{2em}
 	\includegraphics[width=5.5cm]{Fig-MT13.jpg}
+Quantile regression tested by Python library StatsModel. Source: \cite{Lemenkova201989}
 \end{column}
 \begin{column}{0.5\textwidth}
 \vspace{2em}
@@ -1600,15 +1728,15 @@ Key points on QGIS methodology of manual digitizing:
 \begin{column}{0.5\textwidth}
 \vspace{2em}
 	\includegraphics[width=6.0cm]{Fig-IBT1.jpg}
-The Izu-Bonin Trench is boarded on the east by the Ogasawara Plateau \cite{Nishizawaetal2006}.
+IBT a.k.a. Izu-Ogasawara Trench is located in west Pacific Ocean, lies south of Japan
 \end{column}
 \begin{column}{0.5\textwidth}
 \vspace{2em}
 	Key points on the Izu-Bonin Trench (IBT): 
 \begin{itemize}
-            \item IBT a.k.a. Izu-Ogasawara Trench is located in west Pacific Ocean, lies south of Japan
-            \item Longitudinally, it extends from near Tokyo, Japan to Guam \cite{BarnesStraub}. 
-            \item In its structure, IBT continues the JT. The Izu-Bonin Trench is formed in the area of active tectonic subduction of the Cretaceous (135 Ma) PP beneath the PSP \cite{Sanoetal2016}. 
+            \item The Izu-Bonin Trench is boarded on the east by the Ogasawara Plateau \cite{Nishizawaetal2006}
+            \item Longitudinally, it extends from near Tokyo, Japan to Guam \cite{BarnesStraub}
+            \item In its structure, IBT continues the JT. The Izu-Bonin Trench is formed in the area of active tectonic subduction of the Cretaceous (135 Ma) PP beneath the PSP \cite{Sanoetal2016}
             \item As a consequence of this subduction the following structured are formed (volcanic arc of the on the Izu-Bonin-Mariana Arc system): 
             	\begin{itemize}
            		\item Izu Island 
